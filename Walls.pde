@@ -1,0 +1,48 @@
+class Walls {
+  int posX;
+  int posY;
+  int x = 0;
+  int y = 0;
+  color c;
+
+  Walls(int posX, int posY) {
+    this.posX=posX;
+    this.posY=posY;
+  }//constructor end
+
+  Walls() {
+    this.posX = 0;
+    this.posY = 0;
+  }
+
+  void display(int offSetX, int offSetY) {
+    fill(0, 0, 0);
+    rect(posX + offSetX, posY + offSetY, Player.tileSize, Player.tileSize);
+  }//display end
+  //__________________ Collision method for walls >> Players _________________________
+  boolean collision(Player bob) {
+    if (
+      bob.posX + Player.tileSize >= posX && 
+      (bob.posX <= Player.tileSize+posX) && 
+      (bob.posY + Player.tileSize >= posY) && 
+      (bob.posY <= posY+Player.tileSize)      
+      ) {
+      return true;
+    } else {
+      return false;
+    }
+  }  //player collision end
+
+  boolean collMonster (Monster frank) {
+    if (
+      frank.posX + Player.tileSize >= posX && 
+      (frank.posX <= Player.tileSize+posX) && 
+      (frank.posY + Player.tileSize >= posY) && 
+      (frank.posY <= posY+Player.tileSize)
+      ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+} //class end

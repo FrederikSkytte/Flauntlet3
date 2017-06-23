@@ -1,0 +1,99 @@
+class Monster {
+  int posX = 0;
+  int posY = 0;
+
+  int health = 10;
+  int durationOneFrame = 180;
+  int frame = 0;
+  int frameMax = 3;
+  int ticksLast = millis();
+  int radius = 15;
+
+  int spawnPosition = 0;
+
+  int offset = 10;
+  //int moveDirection = 0;
+
+  PImage spriteSheet;
+
+  Monster(int x, int y) {
+    posX=x;
+    posY=y;
+  }
+
+  //wolf
+  void displayMonster1() {
+
+    spriteSheet =loadImage("catsprite.png");
+
+    PImage f = spriteSheet.get(178 + (frame * 40), 215, 35, 21); 
+    image(f, posX, posY);
+    int delta = millis() - ticksLast;
+    if (delta >= durationOneFrame) {
+      frame++;
+      if (frame >= frameMax) { 
+        frame = 0;
+      }
+      ticksLast += delta;
+    }
+  }
+
+  void displayMonster2() {
+    spriteSheet =loadImage("catsprite.png");
+
+    PImage f = spriteSheet.get(179 + (frame * 40), 280, 35, 33); 
+    image(f, posX, posY);
+    int delta = millis() - ticksLast;
+    if (delta >= durationOneFrame) {
+      frame++;
+      if (frame >= frameMax) { 
+        frame = 0;
+      }
+      ticksLast += delta;
+    }
+  }
+  void displayMonster3() {
+    spriteSheet =loadImage("catsprite.png");
+
+    PImage f = spriteSheet.get(178 + (frame * 40), 215, 35, 21); 
+    image(f, posX, posY);
+    int delta = millis() - ticksLast;
+    if (delta >= durationOneFrame) {
+      frame++;
+      if (frame >= frameMax) { 
+        frame = 0;
+      }
+      ticksLast += delta;
+    }
+  }
+
+  boolean collision(int collX, int collY) { 
+    float distance = sqrt(pow(collX-posX, 2)+(pow(collY-posY, 2)));
+     
+     if (distance<radius)
+     {
+     return true;
+     } else {
+     return false;
+     }
+  }
+
+  void monsterAI() {
+
+    if (posY>players[0].posY-offset-500 && posY<players[0].posY+offset+500) {
+
+      if (posX<player1.posX) {
+        posX++;
+      } else if (posX>player1.posX && posX!=player1.posX) {
+        posX--;
+      }
+    }
+    if (posX>player1.posX-offset-500 && posX<player1.posX+offset+500) {
+      if (posY<player1.posY) {
+        posY++;
+      } else if (posY>player1.posY) {
+        posY--;
+      }
+    }
+  }
+}
