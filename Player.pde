@@ -126,12 +126,4 @@ public class Player {
       direction[1] = 1;
     }
   }
-  ///////////////////////////// Game Over Function/////////////////////////////////////  
-
-  void displayGameOver() {
-    fill(0); //find RainbowColor
-    textSize(72);
-    textAlign(CENTER);
-    text("GAME OVER", height*0.5, width*0.5);
-  }
 }
