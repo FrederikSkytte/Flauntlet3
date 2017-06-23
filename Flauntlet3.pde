@@ -128,7 +128,7 @@ void reset() {
   treasure = new Item(200, 200);//temoorary position
 }//reset end
 
-//_____________________Action on Collision____________________________
+//_____________________Collision Handling____________________________
 void collAction() {
   for (int x = 0; x<maze[0].walls.size(); x++) {
 
