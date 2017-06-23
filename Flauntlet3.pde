@@ -161,12 +161,18 @@ void collAction() {
 
         players[i].posX += v.x;
         players[i].posY += v.y;
+      } // if statement end
+      
+      float monsterCenterX, monsterCenterY;
+      monsterCenterX = monster1.posX + (70*0.5);
+      monsterCenterY = monster1.posY + (42*0.5);
+      
+      if (maze[0].walls.get(x).collMonster(monster1)) {
+        vx = monsterCenterX - wallCenterX;
+        vy = monsterCenterY - wallCenterY;
 
-        println("wall is here");
+        println("monster hit the wall");
       }
-    } // if statement end
-    if (maze[0].walls.get(x).collMonster(monster1)) {
-      println("monster hit the wall");
     }
   } // for loop end
 
