@@ -68,7 +68,7 @@ void draw() {
 
   clear();
 
-  fill(255.0, 255.0, 255.0);
+  fill(50,50,50);
 
   rect(0, 0, 500, 500);
   fill(150);
@@ -92,7 +92,7 @@ void displayStuff() {
   // monster2.displayMonster2();
 
   for (int i = 0; i < shots.size(); ++i) {
-    shots.get(i).displayWeapon();
+    shots.get(i).displayWeapon(offSetX, offSetY);
   }
 
   //******LEVEL**********//
@@ -105,8 +105,8 @@ void displayStuff() {
   }
 
   //******ITEMS**********//
-  life.Life();
-  treasure.Treasure();
+  life.Life(offSetX, offSetY);
+  treasure.Treasure(offSetX, offSetY);
 
   //******MONSTERS**********//
   monster1.displayMonster1(offSetX,offSetY);
