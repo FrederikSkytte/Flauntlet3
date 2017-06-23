@@ -24,7 +24,7 @@ class Weapon {
 
     spriteSheet =loadImage("catsprite.png");
     PImage f = spriteSheet.get(52, 214, 10, 10); 
-    image(f, spawnX + offSetX, spawnY + offSetY);
+    image(f, spawnX+20 + offSetX, spawnY+10 + offSetY);
   }
 }
 
