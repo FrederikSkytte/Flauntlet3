@@ -132,38 +132,21 @@ void reset() {
 void collAction() {
   PVector v;
 
-  v = new PVector(10, 10);
+  v = PVector(10, 10);
   for (int x = 0; x<maze[0].walls.size(); x++) {
 
-    int wallCenterX, wallCenterY;
-    wallCenterX = maze[0].walls.get(x).posX + (Player.tileSize/2);
-    wallCenterY = maze[0].walls.get(x).posY + (Player.tileSize/2);
 
     //Insert action that happens if collision returns true for the player
     for (int i = 0; i < players.length; ++i) {
-
-      int playerCenterX, playerCenterY;
-      playerCenterX = players[i].posX + (Player.tileSize/2);
-      playerCenterY = players[i].posY + (Player.tileSize/2);
-
       if (maze[0].walls.get(x).collision(players[i])) {
-
-        float vx, vy;
-        vx = playerCenterX - wallCenterX;
-        vy = playerCenterY - wallCenterY;
+        int vx, vy;
+        vx = players[i].posX - maze[0].walls.get(x).posX;
+        vy = players[i].posY - maze[0].walls.get(x).posY;
         v.x = vx;
         v.y = vy;
-        float vLength = v.mag();
-        float playerWallDiff; 
-        playerWallDiff = Player.tileSize - vLength;
-        v.normalize();
-        v.mult(playerWallDiff + 5);
-
-        players[i].posX += v.x;
-        players[i].posY += v.y;
-
-        println("wall is here");
+        v.
       }
+      println("wall is here");
     } // if statement end
     if (maze[0].walls.get(x).collMonster(monster1)) {
       println("monster hit the wall");
