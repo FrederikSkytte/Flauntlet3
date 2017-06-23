@@ -3,8 +3,8 @@ boolean levelCompleted = false;
 boolean hasStarted = false;
 boolean GAMEOVER = false;
 
-
 int currentLevel = 0;
+int currentLife = 1000;
 
 static final int W = 1;
 static final int E = 2;
@@ -13,20 +13,16 @@ static final int P = 4;
 
 
 Player players[] = {
-  new Player(50, 50), 
-  new Player(60, 60), 
-  new Player(70, 70)
-
+  new Player(50, 50), new Player(60, 60), new Player(70, 70)
 };
 
-Item life;
+Item life; 
 Item treasure;
 
 ArrayList<Weapon> shots;
 
 //Weapon weapon1;
 Monster monster1; 
-Monster monster2;
 
 LevelMap map = new LevelMap();
 Level maze[] = {
@@ -52,6 +48,8 @@ new Level(0, 0),
 
 int offSetX = 0;
 int offSetY = 0;
+int ticksLast = 0;
+float delta = 0.0;
 
 void setup() {
   size (500, 500);
@@ -60,6 +58,7 @@ void setup() {
 }
 
 void draw() {
+  ticksLast = millis();
   int cameraPosX = (players[0].posX+players[1].posX+players[2].posX)/3;
   int cameraPosY = (players[0].posY+players[1].posY+players[2].posY)/3;
 
@@ -68,7 +67,7 @@ void draw() {
 
   clear();
 
-  fill(50,50,50);
+  fill(50, 50, 50);
 
   rect(0, 0, 500, 500);
   fill(150);
@@ -76,7 +75,8 @@ void draw() {
   displayStuff();
 
   monster1.monsterAI();
-  //weapon1.weaponAI();
+  updateShots();
+  delta = millis()-ticksLast;
 }//draw end
 
 //_____________________Display Function____________________________
@@ -87,9 +87,6 @@ void displayStuff() {
   players[1].displayPlayer2(offSetX, offSetY);
   players[2].displayPlayer3(offSetX, offSetY);
 
-
-  //monster1.displayMonster1();
-  // monster2.displayMonster2();
 
   for (int i = 0; i < shots.size(); ++i) {
     shots.get(i).displayWeapon(offSetX, offSetY);
@@ -109,7 +106,7 @@ void displayStuff() {
   treasure.Treasure(offSetX, offSetY);
 
   //******MONSTERS**********//
-  monster1.displayMonster1(offSetX,offSetY);
+  monster1.displayMonster1(offSetX, offSetY);
 
   //******GAMEOVER**********//
   //player1.displayGameOver();
@@ -122,7 +119,7 @@ void reset() {
   players[2] = new Player(50, 70);
   //weapon1 = new Weapon(players[0].posX, players[0].posY);
   monster1 = new Monster(300, 250);
-  monster2 = new Monster (350, 250);
+
   shots = new ArrayList<Weapon>();
   life = new Item(100, 100); //temoorary position
   treasure = new Item(200, 200);//temoorary position
@@ -137,16 +134,14 @@ void collAction() {
       //Insert action that happens if collision returns true for the player
       println("wall is here");
     } // if statement end
-      if (maze[0].walls.get(x).collMonster(monster1)) {
-   println("monster hit the wall");
-   }
-   
+    if (maze[0].walls.get(x).collMonster(monster1)) {
+      println("monster hit the wall");
+    }
   } // for loop end
-  
- 
 
 
   players[0].collision(players[0].posX, players[0].posY, 20);
+  
   monster1.collision(monster1.posX, monster1.posY, 30);
 }
 
@@ -172,10 +167,10 @@ void keyPressed() {
     int[] dir =  players[0].direction;
     shots.add(new Weapon(x, y, dir[0], dir[1]));
   }
-  //weapon1.weaponAI();
 }
 
 //player 2
+
 //player 3
 
 
@@ -202,6 +197,18 @@ void keyReleased() {
     players[0].keyUp = false;
   }
 } //keyReleased end
+
+//////////////////////////////UpdateShots////////////////////////////////////
+void updateShots() {
+
+  for (int i = 0; i < shots.size(); i ++) {
+    shots.get(i).lifeSpan -= delta/1000;
+    
+    if (shots.get(i).lifeSpan<=0) {
+      shots.remove(i); 
+    }
+  }
+}
 
 //////////////////////////////GAMEOVER////////////////////////////////////
 

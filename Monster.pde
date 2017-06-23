@@ -41,28 +41,47 @@ class Monster {
       ticksLast += delta;
     }
   }
+
   void monsterAI() {
 
-    if (posY> players[0].posY-offset-500 && posY< players[0].posY+offset+500) {
+    int targetIndex = 0;
+    float targetDistance = dist(players[0].posX, players[0].posY, posX, posY);
 
-      if (posX< players[0].posX) {
-        posX++;
-        yOffset = 65;
-      } else if (posX> players[0].posX && posX!= players[0].posX) {
-        posX--;
-        yOffset = 12;
+    for (int i = 1; i < players.length; i ++) {
+      float currentDist = dist(players[i].posX, players[i].posY, posX, posY);
+      if (currentDist < targetDistance) {
+        targetDistance = i;
       }
     }
-    if (posX> players[0].posX-offset-400 && posX< players[0].posX+offset+400) {
-      if (posY< players[0].posY) {
-        posY++;
-      } else if (posY> players[0].posY) {
-        posY--;
+    // Check distance til alle tre players
+    // Gem indexet fra playeren som er nærmest
+    // sæt targetIndex til at være den nærmeste players index
+
+
+    if (targetDistance > 10) { // Check distance til target player, hvis mindre end X (definer selv X) så gør ingenting
+      if (posY> players[targetIndex].posY-offset-500 && posY< players[0].posY+offset+500) {
+
+        if (posX< players[0].posX) {
+          posX++;
+          yOffset = 65;
+        } else if (posX> players[targetIndex].posX && posX!= players[0].posX) {
+          posX--;
+          yOffset = 12;
+        }
       }
-    }
-    if (isDead == true) {
-      xOffset = 242;
-      frameMax = 1;
+      if (posX> players[0].posX-offset-400 && posX< players[0].posX+offset+400) {
+        if (posY< players[0].posY) {
+          posY++;
+        } else if (posY> players[targetIndex].posY) {
+          posY--;
+        }
+      }
+      //if (collision == true){
+      // }
+      if (isDead == true) {
+        xOffset = 242;
+        frameMax = 1;
+      }
     }
   }
   ////////////////////////////COLLISIONDETECTION//////////////////////////////////////

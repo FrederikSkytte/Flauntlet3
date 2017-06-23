@@ -4,6 +4,7 @@ class Weapon {
   int spawnX = 0;
   int spawnY = 0;
   int speed = 5;
+  float lifeSpan = 1.5;
 
   int damage = 5;
   PImage spriteSheet;

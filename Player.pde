@@ -19,9 +19,9 @@ public class Player {
   int durationOneFrame = 180;
   int frame = 0;
   int frameMax = 0;
-  int ticksLast = millis();
   int radius = 15;
   int score = 0;
+  int ticksLast = millis();
 
   int yOffset = 0;
   int[] direction = {0, -1};
@@ -39,6 +39,7 @@ public class Player {
     //frameRate(100);
     PImage f = spriteSheet.get(2 + (frame * 36), yOffset, 36, 42);
     image(f, posX + offSetX, posY + offSetY);//position of the sprite
+
     int delta = millis() - ticksLast;
     if (delta >= durationOneFrame) {
       frame++;
