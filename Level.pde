@@ -4,6 +4,8 @@ class Level {
   int w;
   int h;
   ArrayList<Walls> walls = new ArrayList<Walls>();
+  ArrayList<Monster> monsters = new ArrayList<Monster>();
+
 
   Level(int[][] Map) {
     for (int y=0; y<Map.length; y++) {
@@ -16,11 +18,11 @@ class Level {
           walls.add(new Walls(x*Player.tileSize, y*Player.tileSize));
           break;
 
-          /*case E : //Spawning Enemies
-           new Enemies(x*Player.tileSize, y*Player.tileSize);
+          case M : //Spawning Monsters
+           new Monster(x*Player.tileSize, y*Player.tileSize);
            break;
            
-           case T : //Spawning Treasure
+           /*case T : //Spawning Treasure
            new Treasure(x*Player.tileSize, y*Player.tileSize);  
            break;
            
@@ -38,6 +40,9 @@ class Level {
   void displayMaze(int offSetX, int offSetY) {
     for (int i = 0; i<walls.size();i++) {
       walls.get(i).display(offSetX,offSetY);
+    }
+    for (int i = 0; i <monsters.size(); ++i) {
+      monsters.get(i).displayMonster1(offSetX,offSetY);
     }
   }
 
