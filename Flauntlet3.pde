@@ -178,7 +178,7 @@ void collAction() {
     } // monsters for loop end
   } // Maze for loop end
 /*
-=======
+
 
       float monsterCenterX, monsterCenterY;
       monsterCenterX = monster1.posX + (70*0.5);
@@ -191,13 +191,13 @@ void collAction() {
        println("monster hit the wall");
        }*/
     }
-  } // for loop end
+ // }  for loop end
   /*
 >>>>>>> origin/master
   players[0].collision(players[0].posX, players[0].posY, 20);
    
    monster1.collision(monster1.posX, monster1.posY, 30);*/
-}
+//}
 
 
 //_____________________Movement____________________________

@@ -18,11 +18,11 @@ class Level {
           walls.add(new Walls(x*Player.tileSize, y*Player.tileSize));
           break;
 
-          case M : //Spawning Monsters
+          /*case M : //Spawning Monsters
            new Monster(x*Player.tileSize, y*Player.tileSize);
            break;
            
-           /*case T : //Spawning Treasure
+           case T : //Spawning Treasure
            new Treasure(x*Player.tileSize, y*Player.tileSize);  
            break;
            
