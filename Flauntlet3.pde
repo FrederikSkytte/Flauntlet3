@@ -1,6 +1,6 @@
 boolean projectDone = false;
 boolean levelCompleted = false;
-boolean hasStarted = false;
+
 boolean GAMEOVER = false;
 
 int currentLevel = 0;
@@ -59,23 +59,26 @@ void setup() {
 
 void draw() {
   ticksLast = millis();
-  int cameraPosX = (players[0].posX+players[1].posX+players[2].posX)/3;
-  int cameraPosY = (players[0].posY+players[1].posY+players[2].posY)/3;
 
-  offSetX = width/2 - cameraPosX;
-  offSetY = height/2 - cameraPosY;
+  if (!GAMEOVER) {
 
-  clear();
+    int cameraPosX = (players[0].posX+players[1].posX+players[2].posX)/3;
+    int cameraPosY = (players[0].posY+players[1].posY+players[2].posY)/3;
 
-  fill(50, 50, 50);
+    offSetX = width/2 - cameraPosX;
+    offSetY = height/2 - cameraPosY;
 
-  rect(0, 0, 500, 500);
-  fill(150);
-  collAction();
-  displayStuff();
-
-  monster1.monsterAI();
-  updateShots();
+    clear();
+    fill(50, 50, 50);
+    rect(0, 0, 500, 500);
+    fill(150);
+    collAction();
+    displayStuff();
+    monster1.monsterAI();
+    updateShots();
+  } else { 
+    displayGameOver();
+  }
   delta = millis()-ticksLast;
 }//draw end
 
@@ -159,28 +162,34 @@ void collAction() {
         players[i].posX += v.x;
         players[i].posY += v.y;
       } // if statement end
-      
+
       float monsterCenterX, monsterCenterY;
       monsterCenterX = monster1.posX + (70*0.5);
       monsterCenterY = monster1.posY + (42*0.5);
-      
-     /* if (maze[0].walls.get(x).collMonster(monster1)) {
-        vx = monsterCenterX - wallCenterX;
-        vy = monsterCenterY - wallCenterY;
 
-        println("monster hit the wall");
-      }*/
+      /* if (maze[0].walls.get(x).collMonster(monster1)) {
+       vx = monsterCenterX - wallCenterX;
+       vy = monsterCenterY - wallCenterY;
+       
+       println("monster hit the wall");
+       }*/
     }
   } // for loop end
-/*
+  /*
   players[0].collision(players[0].posX, players[0].posY, 20);
-  
-  monster1.collision(monster1.posX, monster1.posY, 30);*/
+   
+   monster1.collision(monster1.posX, monster1.posY, 30);*/
 }
 
 
 //_____________________Movement____________________________
 void keyPressed() {
+  if (keyCode == ENTER) {
+    if (GAMEOVER) {
+      GAMEOVER = false;
+      reset();
+    }
+  }
   //player 1
   if (keyCode == LEFT) {
     players[0].keyLeft = true;
@@ -209,6 +218,7 @@ void keyPressed() {
 
 void keyReleased() {
   //player 1
+
   if (keyCode == LEFT) {
     players[0].frameMax = 8;
     players[0].yOffset = 250;
@@ -236,18 +246,18 @@ void updateShots() {
 
   for (int i = 0; i < shots.size(); i ++) {
     shots.get(i).lifeSpan -= delta/1000;
-    
+
     if (shots.get(i).lifeSpan<=0) {
-      shots.remove(i); 
+      shots.remove(i);
     }
   }
 }
 
-//////////////////////////////GAMEOVER////////////////////////////////////
+//////////////////////////////GAMEOVER//////////////////////////////////// 
 
-void gameOver() {
-
-  if (GAMEOVER == true) {
-    players[0].displayGameOver();
-  }
+void displayGameOver() {
+  fill(0); //find RainbowColor
+  textSize(72);
+  textAlign(CENTER);
+  text("GAME OVER", height*0.5, width*0.5);
 }
