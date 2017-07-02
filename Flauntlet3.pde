@@ -172,6 +172,18 @@ void collAction() {
         float mvx, mvy;
         mvx = monsterCenterX - wallCenterX;
         mvy = monsterCenterY - wallCenterY;
+        v.x = mvx;
+        v.y = mvy;
+        float vLength = v.mag();
+        float monsterWallDiff;
+        monsterWallDiff = Player.tileSize - vLength;
+        v.normalize();
+        v.mult(monsterWallDiff + 5);
+
+        monster1.posX += v.x;
+        monster1.posY += v.y;
+
+
 
         println("monster hit the wall");
       }
