@@ -120,7 +120,7 @@ void reset() {
   players[0] = new Player(50, 50);
   players[1] = new Player(50, 60);
   players[2] = new Player(50, 70);
-  //weapon1 = new Weapon(players[0].posX, players[0].posY);
+
   monster1 = new Monster(300, 250);
 
   shots = new ArrayList<Weapon>();
@@ -163,6 +163,7 @@ void collAction() {
         players[i].posY += v.y;
       } // if statement end
     } // player for loop end
+
     for (int i = 0; i < maze[0].walls.size(); ++i) {
       float monsterCenterX, monsterCenterY;
       monsterCenterX = monster1.posX + (70*0.5);
@@ -182,8 +183,6 @@ void collAction() {
 
         monster1.posX += v.x;
         monster1.posY += v.y;
-
-
 
         println("monster hit the wall");
       }
@@ -213,73 +212,6 @@ void collAction() {
 
 
 //_____________________Movement____________________________
-void keyPressed() {
-  if (keyCode == ENTER) {
-    if (GAMEOVER) {
-      GAMEOVER = false;
-      reset();
-    }
-  }
-  //player 1
-  if (keyCode == LEFT) {
-    players[0].keyLeft = true;
-  }
-  if (keyCode == RIGHT) {
-    players[0].keyRight = true;
-  }
-  if (keyCode == DOWN) {
-    players[0].keyDown = true;
-  }
-  if (keyCode == UP) {
-    players[0].keyUp = true;
-  }
-  if (keyCode == SHIFT) {
-    int x =  players[0].posX;
-    int y =  players[0].posY;
-    int[] dir =  players[0].direction;
-    shots.add(new Weapon(x, y, dir[0], dir[1]));
-  }
-  //player 2
-  if (key == 'a' || key == 'A') {
-    players[1].keyLeft = true;
-  }
-  if (key == 'd' || key == 'D' ) {
-    players[1].keyRight = true;
-  }
-  if (key == 's' || key == 'S') {
-    players[1].keyDown = true;
-  }
-  if (key == 'w' || key == 'W') {
-    players[1].keyUp = true;
-  }
-  if (key== 'e') {
-    int x =  players[0].posX;
-    int y =  players[0].posY;
-    int[] dir =  players[0].direction;
-    shots.add(new Weapon(x, y, dir[0], dir[1]));
-  }
-  //player 3
-  if (key == 'j' || key == 'J') {
-    players[2].keyLeft = true;
-  }
-  if (key == 'l' || key == 'L' ) {
-    players[2].keyRight = true;
-  }
-  if (key == 'k' || key == 'K' ) {
-    players[2].keyDown = true;
-  }
-  if (key == 'i' || key == 'I' ) {
-    players[2].keyUp = true;
-  }
-  if (key == 'o') {
-    int x =  players[0].posX;
-    int y =  players[0].posY;
-    int[] dir =  players[0].direction;
-    shots.add(new Weapon(x, y, dir[0], dir[1]));
-  }
-}
-
-
 void keyReleased() {
   //player 1
 
@@ -347,6 +279,77 @@ void keyReleased() {
     players[2].keyUp = false;
   }
 } //keyReleased end
+
+void keyPressed() {
+  if (keyCode == ENTER) {
+    if (GAMEOVER) {
+      GAMEOVER = false;
+      reset();
+    }
+  }
+  //player 1
+  if (keyCode == LEFT) {
+    players[0].keyLeft = true;
+  }
+  if (keyCode == RIGHT) {
+    players[0].keyRight = true;
+  }
+  if (keyCode == DOWN) {
+    players[0].keyDown = true;
+  }
+  if (keyCode == UP) {
+    players[0].keyUp = true;
+  }
+  if (keyCode == SHIFT) {
+    int x =  players[0].posX;
+    int y =  players[0].posY;
+    int[] dir =  players[0].direction;
+    shots.add(new Weapon(x, y, dir[0], dir[1]));
+  }
+  //player 2
+  if (key == 'a' || key == 'A') {
+    players[1].keyLeft = true;
+  }
+  if (key == 'd' || key == 'D' ) {
+    players[1].keyRight = true;
+  }
+  if (key == 's' || key == 'S') {
+    players[1].keyDown = true;
+  }
+  if (key == 'w' || key == 'W') {
+    players[1].keyUp = true;
+  }
+  if (key == 'e') {
+    int x =  players[1].posX;
+    int y =  players[1].posY;
+    int[] dir =  players[1].direction;
+    shots.add(new Weapon(x, y, dir[0], dir[1]));
+    println("PHAW PHAW");
+  }
+  //player 3
+  
+  if (key == 'j' || key == 'J') {
+    players[2].keyLeft = true;
+  }
+  if (key == 'l' || key == 'L' ) {
+    players[2].keyRight = true;
+  }
+  if (key == 'k' || key == 'K' ) {
+    players[2].keyDown = true;
+  }
+  if (key == 'i' || key == 'I' ) {
+    players[2].keyUp = true;
+  }
+  if (key == 'o') {
+    int x =  players[2].posX;
+    int y =  players[2].posY;
+    int[] dir =  players[2].direction;
+    shots.add(new Weapon(x, y, dir[0], dir[1]));
+    println("PHEW PHEW");
+  }
+}
+
+
 
 //////////////////////////////UpdateShots////////////////////////////////////
 void updateShots() {

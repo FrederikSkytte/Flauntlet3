@@ -52,7 +52,7 @@ public class Player {
   }
 
   void displayPlayer2(int offSetX, int offSetY) {
-    spriteSheet =loadImage("catsprite.png");
+    spriteSheet =loadImage("catsprite1.png");
 
     //frameRate(100);
     PImage f = spriteSheet.get(2 + (frame * 36), yOffset, 36, 42);
@@ -69,7 +69,7 @@ public class Player {
     isMoving();
   }
   void displayPlayer3(int offSetX, int offSetY) {
-    spriteSheet =loadImage("catsprite.png");
+    spriteSheet =loadImage("catsprite2.png");
 
     //frameRate(100);
     PImage f = spriteSheet.get(2 + (frame * 36), yOffset, 36, 42);

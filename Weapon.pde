@@ -18,8 +18,8 @@ class Weapon {
   }
   void displayWeapon(int offSetX, int offSetY) {
 
-    // Flytte skud med acceleration i retning
-    // Display Skud
+    // Move shot with acceleration in direction 
+    //display shot
     spawnX += dir[0]*speed;
     spawnY += dir[1]*speed;
 
