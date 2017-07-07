@@ -83,7 +83,9 @@ class Monster {
         frameMax = 1;
       }
     }
-  }
+  }//end MonsterAI
+
+
   ////////////////////////////COLLISIONDETECTION//////////////////////////////////////
   boolean collision(int collX, int collY, int rad) { // circle to circle collision
     float distance = sqrt(pow(collX-posX, 2)+(pow(collY-posY, 2)));
@@ -96,36 +98,3 @@ class Monster {
     }
   } //collision end
 }
-
-//end MonsterAI
-
-/*
-  void displayMonster2() {
- spriteSheet =loadImage("catsprite.png");
- 
- PImage f = spriteSheet.get(179 + (frame * 40), 280, 35, 33); 
- image(f, posX, posY);
- int delta = millis() - ticksLast;
- if (delta >= durationOneFrame) {
- frame++;
- if (frame >= frameMax) { 
- frame = 0;
- }
- ticksLast += delta;
- }
- }
- void displayMonster3() {
- spriteSheet =loadImage("catsprite.png");
- 
- PImage f = spriteSheet.get(178 + (frame * 40), 215, 35, 21); 
- image(f, posX, posY);
- int delta = millis() - ticksLast;
- if (delta >= durationOneFrame) {
- frame++;
- if (frame >= frameMax) { 
- frame = 0;
- }
- ticksLast += delta;
- }
- }
- */

@@ -164,10 +164,10 @@ void collAction() {
       } // if statement end
     } // player for loop end
     for (int i = 0; i < maze[0].walls.size(); ++i) {
-            float monsterCenterX, monsterCenterY;
+      float monsterCenterX, monsterCenterY;
       monsterCenterX = monster1.posX + (70*0.5);
       monsterCenterY = monster1.posY + (42*0.5);
-      
+
       if (maze[0].walls.get(x).collMonster(monster1)) {
         float mvx, mvy;
         mvx = monsterCenterX - wallCenterX;
@@ -189,26 +189,26 @@ void collAction() {
       }
     } // monsters for loop end
   } // Maze for loop end
-/*
-
-
-      float monsterCenterX, monsterCenterY;
-      monsterCenterX = monster1.posX + (70*0.5);
-      monsterCenterY = monster1.posY + (42*0.5);
-
-      /* if (maze[0].walls.get(x).collMonster(monster1)) {
-       vx = monsterCenterX - wallCenterX;
-       vy = monsterCenterY - wallCenterY;
-       
-       println("monster hit the wall");
-       }*/
-    }
- // }  for loop end
   /*
->>>>>>> origin/master
-  players[0].collision(players[0].posX, players[0].posY, 20);
+
    
-   monster1.collision(monster1.posX, monster1.posY, 30);*/
+   float monsterCenterX, monsterCenterY;
+   monsterCenterX = monster1.posX + (70*0.5);
+   monsterCenterY = monster1.posY + (42*0.5);
+   
+  /* if (maze[0].walls.get(x).collMonster(monster1)) {
+   vx = monsterCenterX - wallCenterX;
+   vy = monsterCenterY - wallCenterY;
+   
+   println("monster hit the wall");
+   }*/
+}
+// }  for loop end
+/*
+>>>>>>> origin/master
+ players[0].collision(players[0].posX, players[0].posY, 20);
+ 
+ monster1.collision(monster1.posX, monster1.posY, 30);*/
 //}
 
 
@@ -239,11 +239,45 @@ void keyPressed() {
     int[] dir =  players[0].direction;
     shots.add(new Weapon(x, y, dir[0], dir[1]));
   }
+  //player 2
+  if (key == 'a' || key == 'A') {
+    players[1].keyLeft = true;
+  }
+  if (key == 'd' || key == 'D' ) {
+    players[1].keyRight = true;
+  }
+  if (key == 's' || key == 'S') {
+    players[1].keyDown = true;
+  }
+  if (key == 'w' || key == 'W') {
+    players[1].keyUp = true;
+  }
+  if (key== 'e') {
+    int x =  players[0].posX;
+    int y =  players[0].posY;
+    int[] dir =  players[0].direction;
+    shots.add(new Weapon(x, y, dir[0], dir[1]));
+  }
+  //player 3
+  if (key == 'j' || key == 'J') {
+    players[2].keyLeft = true;
+  }
+  if (key == 'l' || key == 'L' ) {
+    players[2].keyRight = true;
+  }
+  if (key == 'k' || key == 'K' ) {
+    players[2].keyDown = true;
+  }
+  if (key == 'i' || key == 'I' ) {
+    players[2].keyUp = true;
+  }
+  if (key == 'o') {
+    int x =  players[0].posX;
+    int y =  players[0].posY;
+    int[] dir =  players[0].direction;
+    shots.add(new Weapon(x, y, dir[0], dir[1]));
+  }
 }
-
-//player 2
-
-//player 3
 
 
 void keyReleased() {
@@ -268,6 +302,49 @@ void keyReleased() {
     players[0].frameMax = 1;
     players[0].yOffset = 40;
     players[0].keyUp = false;
+  }
+
+  //player2
+  if (key == 'a' || key == 'A') {
+    players[1].frameMax = 8;
+    players[1].yOffset = 250;
+    players[1].keyLeft = false;
+  }
+  if (key == 'd' || key == 'D' ) {
+    players[1].frameMax = 8;
+    players[1].yOffset = 2;
+    players[1].keyRight = false;
+  }
+  if (key == 's' || key == 'S') {
+    players[1].frameMax = 1;
+    players[1].yOffset = 80;
+    players[1].keyDown = false;
+  }
+  if (key == 'w' || key == 'W') {
+    players[1].frameMax = 1;
+    players[1].yOffset = 40;
+    players[1].keyUp = false;
+  }
+  //player3
+  if (key == 'j' || key == 'J') {
+    players[2].frameMax = 8;
+    players[2].yOffset = 250;
+    players[2].keyLeft = false;
+  }
+  if (key == 'l' || key == 'L' ) {
+    players[2].frameMax = 8;
+    players[2].yOffset = 2;
+    players[2].keyRight = false;
+  }
+  if (key == 'k' || key == 'K' ) {
+    players[2].frameMax = 1;
+    players[2].yOffset = 80;
+    players[2].keyDown = false;
+  }
+  if (key == 'i' || key == 'I' ) {
+    players[2].frameMax = 1;
+    players[2].yOffset = 40;
+    players[2].keyUp = false;
   }
 } //keyReleased end
 

@@ -54,8 +54,10 @@ public class Player {
   void displayPlayer2(int offSetX, int offSetY) {
     spriteSheet =loadImage("catsprite.png");
 
-    PImage f = spriteSheet.get(5 + (frame * 33), yOffset, 25, 27); 
+    //frameRate(100);
+    PImage f = spriteSheet.get(2 + (frame * 36), yOffset, 36, 42);
     image(f, posX + offSetX, posY + offSetY);//position of the sprite
+
     int delta = millis() - ticksLast;
     if (delta >= durationOneFrame) {
       frame++;
@@ -69,8 +71,10 @@ public class Player {
   void displayPlayer3(int offSetX, int offSetY) {
     spriteSheet =loadImage("catsprite.png");
 
-    PImage f = spriteSheet.get(5 + (frame * 33), yOffset, 25, 27); 
+    //frameRate(100);
+    PImage f = spriteSheet.get(2 + (frame * 36), yOffset, 36, 42);
     image(f, posX + offSetX, posY + offSetY);//position of the sprite
+
     int delta = millis() - ticksLast;
     if (delta >= durationOneFrame) {
       frame++;
